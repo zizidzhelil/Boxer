@@ -1,4 +1,6 @@
-﻿using Boxer.Args.Factories;
+﻿using Boxer.Args.ConfigArgs;
+using Boxer.Args.ConfigArgs.Parsers;
+using Boxer.Args.Factories;
 using Boxer.Args.ScriptArgs;
 using Boxer.Args.ScriptArgs.Parsers;
 using Boxer.Args.SharedArgs;
@@ -11,7 +13,7 @@ using Boxer.Parser;
 using Microsoft.Extensions.DependencyInjection;
 using ScoopBox;
 
-namespace Boxer.Configuration
+namespace Boxer.Container
 {
     public static class DependendencyResolver
     {
@@ -23,7 +25,7 @@ namespace Boxer.Configuration
                 return new VerbParserFactory()
                 {
                     { new ScriptVerb(), new ScriptVerbParser(serviceProvider.GetService<IArgParserFactory>(), serviceProvider.GetService<IHandler<SandboxRequest>>()) },
-                    { new ConfigVerb(), new ConfigVerbParser() },
+                    { new ConfigVerb(), new ConfigVerbParser(serviceProvider.GetService<IArgParserFactory>(), serviceProvider.GetService<IHandler<SandboxRequest>>()) },
                     { new HelpVerb(), new HelpVerbParser() },
                 };
             });
@@ -35,6 +37,7 @@ namespace Boxer.Configuration
                     { new ChocolateyScriptArg(), new ChocolateyArgParser()},
                     { new ScoopScriptArg(), new ScoopScriptArgsParser()},
                     { new LiteralScriptArg(), new LiteralScriptArgParser()},
+                    { new ConfigArg(), new ConfigArgParser()},
                     { new HelpArg(), new HelpArgParser()}
                 };
             });
