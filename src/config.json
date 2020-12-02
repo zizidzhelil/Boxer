@@ -1,0 +1,15 @@
+[
+   {
+      "values":[
+         "git",
+         "fiddler"
+      ],
+      "type":"Scoop"
+   },
+   {
+      "values":[
+         "vscode"
+      ],
+      "type":"Chocolatey"
+   }
+]

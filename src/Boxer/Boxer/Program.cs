@@ -14,7 +14,7 @@ namespace Boxer
             // args = new string[] { "script", "--scoop", "git, curl, fiddler", "--chocolatey", "vscode" };
             // args = new string[] { "script", "-h" };
 
-            args = new string[] { "config", "-c",  ""};
+            args = new string[] { "config", "-c", "" };
 
             IServiceProvider serviceProvider = new ServiceCollection()
                .RegisterConcreteTypes()
